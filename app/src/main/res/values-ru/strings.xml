@@ -1,0 +1,76 @@
+<resources>
+    <!-- Common -->
+    <string name="app_name">Будильник</string>
+    <string name="error_loading_message">Ошибка загрузки. Проверьте подключение к сети и попробуйте снова.</string>
+    <string name="error_loading_action_text">Повторить попытку</string>
+    <string name="snooze_alarm_clock">Отложить</string>
+    <string name="turn_off_alarm_clock">Выключить</string>
+    <string name="cancel">Отмена</string>
+
+    <!-- HomeScreen -->
+    <string name="alarm_clock">Будильник</string>
+    <string name="delete">Удалить</string>
+    <string name="no_alarm_clocks">Нет будильников</string>
+    <string name="alarm_clock_will_work_after">До срабатывания будильника %1$s.</string>
+    <string name="will_work_after">До срабатывания %1$s.</string>
+
+    <!-- CreateAndUpdateAlarmClockScreen -->
+    <string name="alarm_clock_sound">Звук будильника</string>
+    <string name="alarm_clock_unnamed_sound">Без названия</string>
+    <string name="alarm_clock_name">Название будильника</string>
+    <string name="alarm_clock_vibration">Вибрация</string>
+    <string name="alarm_clock_time_snooze">Время отложения</string>
+
+    <!-- SoundSelectionScreen -->
+    <string name="select_sound">Выберите звук</string>
+
+    <string name="system_sounds">Системные звуки</string>
+    <string name="mute">Без звука</string>
+    <string name="default_sound">Default sound</string>
+
+    <string name="device_sounds">Звуки с устройства</string>
+    <string name="select_from_files">Выбрать из файлов</string>
+    <string name="spotify_track">Трек из Spotify</string>
+    <string name="new_release_spotify_artist">Новый релиз исполнителя из Spotify</string>
+
+    <string name="error_sound_selection">Произошла ошибка в выборе звука. Повторите попытку позже.</string>
+
+    <!-- SpotifyConnectionScreen -->
+    <string name="connection_to_spotify">Подключение к Spotify</string>
+    <string name="could_not_find_spotify_app_message">Для использования звуков из Spotify, нужно установить приложение Spotify.</string>
+    <string name="could_not_find_spotify_app_action_text">Установить приложение Spotify</string>
+    <string name="not_authorized_message">Для использования звуков из Spotify, нужно войти в аккаунт Spotify.</string>
+    <string name="not_authorized_action_text">Войти</string>
+
+    <!-- SpotifyTracksScreen -->
+    <string name="enter_track_name">Введите название песни</string>
+
+    <!-- SpotifyArtistsScreen -->
+    <string name="enter_artist">Введите исполнителя</string>
+    <string name="hint_text">Выберите любимого исполнителя и проснитесь под его новую музыку.</string>
+    <string name="how_it_work">Как это работает</string>
+    <string name="dialog_text">
+        Выберите любимого исполнителя, a приложение проверит, есть ли у него новая музыка.
+        \nЕсли новые релизы найдены, они будут установлены в качестве звука будильника.
+        \nЕсли новых релизов нет, в качестве звука будильника будет установлен последний релиз исполнителя.
+        \nЕсли произойдёт ошибка в проверке новых релизов, то в качестве звука будильника будет установлен случайный трек исполнителя.
+        \n
+        \nВнимание!
+        \nНовые релизы проверяются за минуту до срабатывания будильника. Учитывайте это при его настройке!
+    </string>
+    <string name="clearly">Понятно</string>
+
+    <!-- FormattedDurationPlurals -->
+    <string name="duration_format_days_hours_minutes">%s, %s и %s</string>
+    <string name="duration_format_days_hours">%s и %s</string>
+    <string name="duration_format_days_minutes">%s и %s</string>
+    <string name="duration_format_days_only">%s</string>
+    <string name="duration_format_hours_minutes">%s и %s</string>
+    <string name="duration_format_hours_only">%s</string>
+    <string name="duration_format_minutes_only">%s</string>
+    <string name="duration_format_less_than_minute">меньше минуты</string>
+
+    <!-- NotificationChannelNames -->
+    <string name="going_alarm_clock_notification_channel">Срабатывание будильников</string>
+
+</resources>

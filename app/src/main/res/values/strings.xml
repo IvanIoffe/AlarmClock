@@ -1,0 +1,76 @@
+<resources>
+    <!-- Common -->
+    <string name="app_name">Alarm Clock</string>
+    <string name="error_loading_message">Loading error. Please check your network connection and try again.</string>
+    <string name="error_loading_action_text">Try Again</string>
+    <string name="snooze_alarm_clock">Snooze</string>
+    <string name="turn_off_alarm_clock">Turn Off</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- HomeScreen -->
+    <string name="alarm_clock">Alarm Clock</string>
+    <string name="delete">Delete</string>
+    <string name="no_alarm_clocks">No alarms</string>
+    <string name="alarm_clock_will_work_after">The alarm will go off in %1$s.</string>
+    <string name="will_work_after">Will go off in %1$s.</string>
+
+    <!-- CreateAndUpdateAlarmClockScreen -->
+    <string name="alarm_clock_sound">Alarm Sound</string>
+    <string name="alarm_clock_unnamed_sound">Unnamed</string>
+    <string name="alarm_clock_name">Alarm Name</string>
+    <string name="alarm_clock_vibration">Vibration</string>
+    <string name="alarm_clock_time_snooze">Snooze Duration</string>
+
+    <!-- SoundSelectionScreen -->
+    <string name="select_sound">Select a Sound</string>
+
+    <string name="system_sounds">System Sounds</string>
+    <string name="mute">Mute</string>
+    <string name="default_sound">Default sound</string>
+
+    <string name="device_sounds">Device Sounds</string>
+    <string name="select_from_files">Select from Files</string>
+    <string name="spotify_track">Spotify Track</string>
+    <string name="new_release_spotify_artist">New Release from Spotify Artist</string>
+
+    <string name="error_sound_selection">An error occurred while selecting the sound. Please try again later.</string>
+
+    <!-- SpotifyConnectionScreen -->
+    <string name="connection_to_spotify">Connect to Spotify</string>
+    <string name="could_not_find_spotify_app_message">To use sounds from Spotify, you need to install the Spotify app.</string>
+    <string name="could_not_find_spotify_app_action_text">Install Spotify App</string>
+    <string name="not_authorized_message">To use sounds from Spotify, please sign in to your Spotify account.</string>
+    <string name="not_authorized_action_text">Sign In</string>
+
+    <!-- SpotifyTracksScreen -->
+    <string name="enter_track_name">Enter track name</string>
+
+    <!-- SpotifyArtistsScreen -->
+    <string name="enter_artist">Enter artist</string>
+    <string name="hint_text">Select your favorite artist and wake up to their new music.</string>
+    <string name="how_it_work">How it works</string>
+    <string name="dialog_text">
+        Select your favorite artist and the app will check if they have new music.
+        \nIf new releases are found, they will be set as your alarm sound.
+        \nIf no new releases are found, the latest release will be used as the alarm sound.
+        \nIf an error occurs while checking for new releases, a random track by the artist will be used.
+        \n
+        \nAttention!
+        \nNew releases are checked one minute before the alarm goes off. Keep this in mind when setting your alarm!
+    </string>
+    <string name="clearly">Got it</string>
+
+    <!-- FormattedDurationPlurals -->
+    <string name="duration_format_days_hours_minutes">%s, %s and %s</string>
+    <string name="duration_format_days_hours">%s and %s</string>
+    <string name="duration_format_days_minutes">%s and %s</string>
+    <string name="duration_format_days_only">%s</string>
+    <string name="duration_format_hours_minutes">%s and %s</string>
+    <string name="duration_format_hours_only">%s</string>
+    <string name="duration_format_minutes_only">%s</string>
+    <string name="duration_format_less_than_minute">less than a minute</string>
+
+    <!-- NotificationChannelNames -->
+    <string name="going_alarm_clock_notification_channel">Going Alarm Clock</string>
+
+</resources>
