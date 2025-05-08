@@ -5,6 +5,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
+import com.ioffeivan.alarmclock.background.worker.utils.AlarmClockInputDataUtils
 import com.ioffeivan.alarmclock.core.domain.usecase.ScheduleAlarmClockUseCase
 import com.ioffeivan.alarmclock.core.utils.Constants
 import com.ioffeivan.alarmclock.core.utils.getNewAlarmClockTime
@@ -23,7 +24,9 @@ class SnoozeAlarmClockWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         return try {
-            val alarmClockId = inputData.getLong(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, -1)
+            val alarmClockInputDataUtils = AlarmClockInputDataUtils(inputData)
+
+            val alarmClockId = alarmClockInputDataUtils.getId() ?: return Result.failure()
             val alarmClock = getAlarmClockByIdUseCase(alarmClockId)
 
             val newTimeAlarmClock =
