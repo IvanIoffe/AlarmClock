@@ -46,6 +46,7 @@ import com.ioffeivan.alarmclock.sound_selection.domain.model.Sound
 import com.ioffeivan.alarmclock.sound_selection.domain.model.SoundType
 import com.ioffeivan.alarmclock.sound_selection.presentation.SoundViewModel
 import com.ioffeivan.alarmclock.spotify.artist.domain.model.Artist
+import com.ioffeivan.alarmclock.spotify.common.presentation.EmptyContentScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.ErrorScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.LoadingScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.SpotifySearchBar
@@ -161,6 +162,10 @@ private fun SearchArtistsScreen(
                         LoadingScreen()
                     }
 
+                    SpotifyArtistsScreenUiState.EmptyContent -> {
+                        EmptyContentScreen()
+                    }
+
                     else -> {}
                 }
             }
@@ -169,7 +174,7 @@ private fun SearchArtistsScreen(
 }
 
 @Composable
-fun Hint(
+private fun Hint(
     onHintClick: () -> Unit,
 ) {
     Column(
@@ -200,7 +205,7 @@ fun Hint(
 }
 
 @Composable
-fun Dialog(
+private fun Dialog(
     onDismissRequest: () -> Unit,
     onConfirm: () -> Unit,
     dialogTitle: String,

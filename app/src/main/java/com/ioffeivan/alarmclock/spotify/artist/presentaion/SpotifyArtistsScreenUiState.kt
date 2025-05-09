@@ -6,5 +6,6 @@ sealed class SpotifyArtistsScreenUiState {
     data object Initial : SpotifyArtistsScreenUiState()
     data object Loading : SpotifyArtistsScreenUiState()
     data class Content(val artists: List<Artist>) : SpotifyArtistsScreenUiState()
+    data object EmptyContent : SpotifyArtistsScreenUiState()
     data object Error : SpotifyArtistsScreenUiState()
 }

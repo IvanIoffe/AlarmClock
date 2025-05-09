@@ -33,9 +33,12 @@ class SpotifyTracksScreenViewModel @Inject constructor(
                     }
 
                     is ApiResponse.Success -> {
-                        SpotifyTracksScreenUiState.Content(
-                            it.data.tracks?.items ?: emptyList()
-                        )
+                        val tracks = it.data.tracks?.items
+                        if (!tracks.isNullOrEmpty()) {
+                            SpotifyTracksScreenUiState.Content(tracks = tracks)
+                        } else {
+                            SpotifyTracksScreenUiState.EmptyContent
+                        }
                     }
                 }
             }

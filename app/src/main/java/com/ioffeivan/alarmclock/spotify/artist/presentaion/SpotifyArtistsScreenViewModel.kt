@@ -33,9 +33,12 @@ class SpotifyArtistsScreenViewModel @Inject constructor(
                     }
 
                     is ApiResponse.Success -> {
-                        SpotifyArtistsScreenUiState.Content(
-                            it.data.artists?.items ?: emptyList()
-                        )
+                        val artists = it.data.artists?.items
+                        if (!artists.isNullOrEmpty()) {
+                            SpotifyArtistsScreenUiState.Content(artists = artists)
+                        } else {
+                            SpotifyArtistsScreenUiState.EmptyContent
+                        }
                     }
                 }
             }

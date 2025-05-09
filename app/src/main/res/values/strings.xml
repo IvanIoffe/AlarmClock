@@ -6,6 +6,7 @@
     <string name="snooze_alarm_clock">Snooze</string>
     <string name="turn_off_alarm_clock">Turn Off</string>
     <string name="cancel">Cancel</string>
+    <string name="message_about_empty_content">Nothing was found. Try to change the query.</string>
 
     <!-- HomeScreen -->
     <string name="alarm_clock">Alarm Clock</string>

@@ -39,6 +39,7 @@ import com.ioffeivan.alarmclock.audio_player.SpotifyPlayerController
 import com.ioffeivan.alarmclock.sound_selection.domain.model.Sound
 import com.ioffeivan.alarmclock.sound_selection.domain.model.SoundType
 import com.ioffeivan.alarmclock.sound_selection.presentation.SoundViewModel
+import com.ioffeivan.alarmclock.spotify.common.presentation.EmptyContentScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.ErrorScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.LoadingScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.PlayingSoundLottieAnimation
@@ -129,7 +130,7 @@ private fun SearchTracksScreen(
                 when (uiState) {
                     is SpotifyTracksScreenUiState.Content -> {
                         Tracks(
-                            tracks = uiState.sounds,
+                            tracks = uiState.tracks,
                             onTrackClick = onTrackClick,
                         )
                     }
@@ -146,6 +147,10 @@ private fun SearchTracksScreen(
 
                     SpotifyTracksScreenUiState.Loading -> {
                         LoadingScreen()
+                    }
+
+                    SpotifyTracksScreenUiState.EmptyContent -> {
+                        EmptyContentScreen()
                     }
 
                     else -> {}

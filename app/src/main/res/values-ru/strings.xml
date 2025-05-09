@@ -6,6 +6,7 @@
     <string name="snooze_alarm_clock">Отложить</string>
     <string name="turn_off_alarm_clock">Выключить</string>
     <string name="cancel">Отмена</string>
+    <string name="message_about_empty_content">Ничего не найдено. Попробуйте изменить запрос.</string>
 
     <!-- HomeScreen -->
     <string name="alarm_clock">Будильник</string>
