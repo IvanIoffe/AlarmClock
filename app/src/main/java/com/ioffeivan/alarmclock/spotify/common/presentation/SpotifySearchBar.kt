@@ -45,8 +45,10 @@ fun SpotifySearchBar(
             query.value = it
         },
         onSearch = {
-            isActive.value = false
-            onSearch(it)
+            if (query.value.isNotBlank()) {
+                isActive.value = false
+                onSearch(it)
+            }
         },
         active = isActive.value,
         onActiveChange = {
