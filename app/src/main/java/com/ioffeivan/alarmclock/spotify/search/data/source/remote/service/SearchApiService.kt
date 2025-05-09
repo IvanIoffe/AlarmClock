@@ -1,4 +1,4 @@
-package com.ioffeivan.alarmclock.spotify.search.data.service
+package com.ioffeivan.alarmclock.spotify.search.data.source.remote.service
 
 import com.ioffeivan.alarmclock.spotify.search.data.source.remote.model.SearchResponseRemote
 import retrofit2.Response

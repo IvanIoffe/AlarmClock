@@ -1,7 +1,7 @@
 package com.ioffeivan.alarmclock.spotify.search.data.source.remote.di
 
 import com.ioffeivan.alarmclock.spotify.search.data.repository.SearchRepositoryImpl
-import com.ioffeivan.alarmclock.spotify.search.data.service.SearchApiService
+import com.ioffeivan.alarmclock.spotify.search.data.source.remote.service.SearchApiService
 import com.ioffeivan.alarmclock.spotify.search.data.source.remote.RetrofitSearchRemoteDataSource
 import com.ioffeivan.alarmclock.spotify.search.data.source.remote.SearchRemoteDataSource
 import com.ioffeivan.alarmclock.spotify.search.domain.repository.SearchRepository
