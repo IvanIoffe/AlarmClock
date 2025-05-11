@@ -33,6 +33,8 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
         when (intent.action) {
             Action.ACTION_START_OR_CANCEL_ALARM_CLOCK -> {
+                val alarmClockHour = intent.getStringExtra(AlarmClockKeys.HOUR_KEY)
+                val alarmClockMinute = intent.getStringExtra(AlarmClockKeys.MINUTE_KEY)
                 val alarmClockSoundType = intent.getStringExtra(AlarmClockKeys.SOUND_TYPE_KEY)
                 val alarmClockSoundUri = intent.getStringExtra(AlarmClockKeys.SOUND_URI_KEY)
                 val alarmClockIsVibrate = intent.getBooleanExtra(AlarmClockKeys.IS_VIBRATE_KEY, false)
@@ -43,6 +45,8 @@ class AlarmClockReceiver : BroadcastReceiver() {
                 startForegroundService(
                     context,
                     alarmClockId,
+                    alarmClockHour,
+                    alarmClockMinute,
                     alarmClockSoundType,
                     alarmClockSoundUri,
                     alarmClockIsVibrate,
@@ -91,6 +95,8 @@ class AlarmClockReceiver : BroadcastReceiver() {
     private fun startForegroundService(
         context: Context,
         alarmClockId: Long,
+        alarmClockHour: String?,
+        alarmClockMinute: String?,
         alarmClockSoundType: String?,
         alarmClockSoundUri: String?,
         alarmClockIsVibrate: Boolean?,
@@ -99,6 +105,8 @@ class AlarmClockReceiver : BroadcastReceiver() {
         val playAlarmClockSoundServiceIntent =
             Intent(context, PlayAlarmClockSoundService::class.java).apply {
                 putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
+                putExtra(AlarmClockKeys.HOUR_KEY, alarmClockHour)
+                putExtra(AlarmClockKeys.MINUTE_KEY, alarmClockMinute)
                 putExtra(AlarmClockKeys.SOUND_TYPE_KEY, alarmClockSoundType)
                 putExtra(AlarmClockKeys.SOUND_URI_KEY, alarmClockSoundUri)
                 putExtra(AlarmClockKeys.IS_VIBRATE_KEY, alarmClockIsVibrate)

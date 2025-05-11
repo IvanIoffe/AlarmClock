@@ -38,7 +38,7 @@ import com.ioffeivan.alarmclock.R
 import com.ioffeivan.alarmclock.background.receiver.AlarmClockReceiver
 import com.ioffeivan.alarmclock.core.utils.Action
 import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
-import com.ioffeivan.alarmclock.core.utils.TimeHelper
+import com.ioffeivan.alarmclock.core.utils.TimeFormatter
 import com.ioffeivan.alarmclock.ui.theme.AlarmClockTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -143,7 +143,7 @@ private fun AlarmClockAction(
 
     LaunchedEffect(Unit) {
         while (isActive) {
-            val currentTime = TimeHelper.getFormattedCurrentTime()
+            val currentTime = TimeFormatter.getFormattedCurrentTime()
             if (currentTime != time)
                 time = currentTime
             delay(100)

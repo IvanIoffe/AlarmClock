@@ -48,7 +48,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ioffeivan.alarmclock.R
 import com.ioffeivan.alarmclock.core.domain.model.AlarmClock
 import com.ioffeivan.alarmclock.core.presentation.TimeUntilAlarmClockMessage
-import com.ioffeivan.alarmclock.core.utils.TimeHelper
+import com.ioffeivan.alarmclock.core.utils.TimeFormatter
 import com.ioffeivan.alarmclock.core.utils.checkPostNotificationPermission
 import com.ioffeivan.alarmclock.core.utils.showTimeUntilAlarmClockToast
 import java.time.LocalTime
@@ -230,7 +230,7 @@ fun AlarmClockItem(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = TimeHelper.getFormattedTime(
+                    text = TimeFormatter.getFormattedTime(
                         LocalTime.of(alarmClock.time.hour, alarmClock.time.minute)
                     ),
                     fontSize = 32.sp,

@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.time.LocalTime
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -46,11 +47,14 @@ class PlayAlarmClockSoundService : Service() {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val alarmClockId = intent.getLongExtra(AlarmClockKeys.ID_KEY, -1)
+        val alarmClockHour = intent.getStringExtra(AlarmClockKeys.HOUR_KEY)?.toIntOrNull() ?: 0
+        val alarmClockMinute = intent.getStringExtra(AlarmClockKeys.MINUTE_KEY)?.toIntOrNull() ?: 0
         val alarmClockSoundType =
             intent.getStringExtra(AlarmClockKeys.SOUND_TYPE_KEY) ?: SoundType.SYSTEM.name
         val alarmClockSoundUri = intent.getStringExtra(AlarmClockKeys.SOUND_URI_KEY)
         val alarmClockIsVibrate = intent.getBooleanExtra(AlarmClockKeys.IS_VIBRATE_KEY, false)
-        val alarmClockName = intent.getStringExtra(AlarmClockKeys.NAME_KEY)
+        val alarmClockName =
+            intent.getStringExtra(AlarmClockKeys.NAME_KEY)
 
         playSound(alarmClockSoundType, alarmClockSoundUri)
 
@@ -59,7 +63,13 @@ class PlayAlarmClockSoundService : Service() {
             vibratorController?.vibrate()
         }
 
-        startForeground(ID, alarmClockNotificationHelper.createNotification(alarmClockId, alarmClockName))
+        val notification = alarmClockNotificationHelper.createNotification(
+            alarmClockId = alarmClockId,
+            alarmClockName = alarmClockName,
+            alarmClockTime = LocalTime.of(alarmClockHour, alarmClockMinute),
+        )
+
+        startForeground(ID, notification)
 
         return START_NOT_STICKY
     }

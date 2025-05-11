@@ -37,6 +37,8 @@ class AlarmClockSchedulerImpl @Inject constructor(
         return Intent(context, AlarmClockReceiver::class.java).apply {
             action = Action.ACTION_START_OR_CANCEL_ALARM_CLOCK
             putExtra(AlarmClockKeys.ID_KEY, alarmClock.id)
+            putExtra(AlarmClockKeys.HOUR_KEY, alarmClock.time.hour.toString())
+            putExtra(AlarmClockKeys.MINUTE_KEY, alarmClock.time.minute.toString())
             putExtra(AlarmClockKeys.SOUND_TYPE_KEY, alarmClock.sound.type.name)
             putExtra(AlarmClockKeys.SOUND_URI_KEY, alarmClock.sound.uri)
             putExtra(AlarmClockKeys.IS_VIBRATE_KEY, alarmClock.isVibrate)

@@ -4,8 +4,9 @@ import android.app.Notification
 import android.content.Context
 import androidx.core.app.NotificationCompat
 import com.ioffeivan.alarmclock.R
-import com.ioffeivan.alarmclock.core.utils.TimeHelper
+import com.ioffeivan.alarmclock.core.utils.TimeFormatter
 import com.ioffeivan.alarmclock.core.utils.getAlarmClockActionActivityPendingIntent
+import java.time.LocalTime
 import javax.inject.Inject
 
 class AlarmClockNotificationHelper @Inject constructor(
@@ -15,11 +16,12 @@ class AlarmClockNotificationHelper @Inject constructor(
     fun createNotification(
         alarmClockId: Long,
         alarmClockName: String?,
+        alarmClockTime: LocalTime,
     ): Notification {
         return NotificationCompat.Builder(context, AlarmClockNotificationChannel.NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_alarm_clock)
             .setContentTitle(context.getString(R.string.alarm_clock))
-            .setContentText(alarmClockName ?: TimeHelper.getFormattedCurrentTime())
+            .setContentText(alarmClockName ?: TimeFormatter.getFormattedTime(alarmClockTime))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .addAction(alarmClockNotificationActionHelper.snoozeAlarmClockAction(alarmClockId = alarmClockId))
             .addAction(alarmClockNotificationActionHelper.stopAlarmClockAction(alarmClockId = alarmClockId))

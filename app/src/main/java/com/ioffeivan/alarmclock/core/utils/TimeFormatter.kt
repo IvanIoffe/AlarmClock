@@ -4,7 +4,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class TimeHelper {
+class TimeFormatter {
 
     companion object {
         private const val FORMAT = "HH:mm"
