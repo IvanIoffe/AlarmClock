@@ -1,4 +1,4 @@
-package com.ioffeivan.alarmclock.spotify.artist.presentaion
+package com.ioffeivan.alarmclock.spotify.artist.presentation
 
 import com.ioffeivan.alarmclock.spotify.artist.domain.model.Artist
 

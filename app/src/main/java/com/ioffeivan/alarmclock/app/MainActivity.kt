@@ -15,7 +15,7 @@ import com.ioffeivan.alarmclock.app.navigation.AppNavGraph
 import com.ioffeivan.alarmclock.app.navigation.Screen
 import com.ioffeivan.alarmclock.app.navigation.rememberNavigationState
 import com.ioffeivan.alarmclock.sound_selection.presentation.SoundSelectionScreen
-import com.ioffeivan.alarmclock.spotify.artist.presentaion.SpotifyArtistsScreen
+import com.ioffeivan.alarmclock.spotify.artist.presentation.SpotifyArtistsScreen
 import com.ioffeivan.alarmclock.spotify.common.presentation.TokenViewModel
 import com.ioffeivan.alarmclock.spotify.connection.presentation.SpotifyConnectionScreen
 import com.ioffeivan.alarmclock.spotify.track.presentation.SpotifyTracksScreen

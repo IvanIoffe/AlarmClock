@@ -1,4 +1,4 @@
-package com.ioffeivan.alarmclock.spotify.artist.presentaion
+package com.ioffeivan.alarmclock.spotify.artist.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

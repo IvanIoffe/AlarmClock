@@ -1,4 +1,4 @@
-package com.ioffeivan.alarmclock.spotify.artist.presentaion
+package com.ioffeivan.alarmclock.spotify.artist.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
