@@ -1,5 +1,6 @@
 package com.ioffeivan.alarmclock.audio_player
 
+import com.ioffeivan.alarmclock.spotify.connection.SpotifyConnector
 import com.spotify.android.appremote.api.PlayerApi
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.protocol.types.Repeat
@@ -23,9 +24,7 @@ class SpotifyPlayerController(
     }
 
     override fun dispose() {
-        spotifyAppRemote?.let {
-            it.playerApi.pause()
-            SpotifyAppRemote.disconnect(it)
-        }
+        spotifyAppRemote?.playerApi?.pause()
+        SpotifyConnector.disconnect()
     }
 }
