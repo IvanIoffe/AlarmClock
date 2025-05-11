@@ -5,7 +5,8 @@ import android.content.Context
 import android.content.Intent
 import com.ioffeivan.alarmclock.background.receiver.AlarmClockReceiver
 import com.ioffeivan.alarmclock.core.domain.model.AlarmClock
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 import com.ioffeivan.alarmclock.core.utils.getAlarmClockPendingIntent
 import com.ioffeivan.alarmclock.core.utils.getTimeMillisUntilAlarmClock
 import javax.inject.Inject
@@ -34,18 +35,18 @@ class AlarmClockSchedulerImpl @Inject constructor(
 
     private fun createScheduleIntent(alarmClock: AlarmClock): Intent {
         return Intent(context, AlarmClockReceiver::class.java).apply {
-            action = Constants.Action.ACTION_START_OR_CANCEL_ALARM_CLOCK
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClock.id)
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY, alarmClock.sound.type.name)
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY, alarmClock.sound.uri)
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_IS_VIBRATE_KEY, alarmClock.isVibrate)
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY, alarmClock.name)
+            action = Action.ACTION_START_OR_CANCEL_ALARM_CLOCK
+            putExtra(AlarmClockKeys.ID_KEY, alarmClock.id)
+            putExtra(AlarmClockKeys.SOUND_TYPE_KEY, alarmClock.sound.type.name)
+            putExtra(AlarmClockKeys.SOUND_URI_KEY, alarmClock.sound.uri)
+            putExtra(AlarmClockKeys.IS_VIBRATE_KEY, alarmClock.isVibrate)
+            putExtra(AlarmClockKeys.NAME_KEY, alarmClock.name)
         }
     }
 
     private fun createCancelIntent(): Intent {
         return Intent(context, AlarmClockReceiver::class.java).apply {
-            action = Constants.Action.ACTION_START_OR_CANCEL_ALARM_CLOCK
+            action = Action.ACTION_START_OR_CANCEL_ALARM_CLOCK
         }
     }
 }

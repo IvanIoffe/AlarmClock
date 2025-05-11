@@ -46,10 +46,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ioffeivan.alarmclock.app.MainActivity
 import com.ioffeivan.alarmclock.R
+import com.ioffeivan.alarmclock.app.MainActivity
 import com.ioffeivan.alarmclock.audio_player.MediaPlayerController
-import com.ioffeivan.alarmclock.core.utils.Constants
 import com.ioffeivan.alarmclock.core.utils.defaultSound
 import com.ioffeivan.alarmclock.create_and_update_alarmclock.presentation.utils.queryFileName
 import com.ioffeivan.alarmclock.create_and_update_alarmclock.presentation.utils.takePersistableUriPermission

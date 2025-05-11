@@ -6,7 +6,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.ioffeivan.alarmclock.core.data.ApiResponse
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
+import com.ioffeivan.alarmclock.core.utils.SpotifyKeys
 import com.ioffeivan.alarmclock.sound_selection.domain.model.SoundType
 import com.ioffeivan.alarmclock.spotify.album.domain.model.Album
 import com.ioffeivan.alarmclock.spotify.album.domain.model.TracksAlbumRequest
@@ -34,7 +35,7 @@ class GetNewReleaseSpotifyArtistWorker @AssistedInject constructor(
     override suspend fun doWork(): Result {
         return try {
             val artistId =
-                inputData.getString(Constants.AlarmClockKeys.SPOTIFY_ARTIST_ID_KEY) ?: return Result.failure()
+                inputData.getString(SpotifyKeys.SPOTIFY_ARTIST_ID_KEY) ?: return Result.failure()
 
             val authResponse: AuthResponse = spotifyAuth() ?: return Result.retry()
             val outputData: Data = getOutputData(authResponse, artistId) ?: return Result.retry()
@@ -64,9 +65,9 @@ class GetNewReleaseSpotifyArtistWorker @AssistedInject constructor(
         val track = getTrackFromLastAlbumSpotifyArtist(authResponse, artistId) ?: return null
 
         return Data.Builder()
-            .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_NAME_KEY, track.getTrackNameWithArtistsName())
-            .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY, SoundType.SPOTIFY_TRACK.name)
-            .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY, track.uri)
+            .putString(AlarmClockKeys.SOUND_NAME_KEY, track.getTrackNameWithArtistsName())
+            .putString(AlarmClockKeys.SOUND_TYPE_KEY, SoundType.SPOTIFY_TRACK.name)
+            .putString(AlarmClockKeys.SOUND_URI_KEY, track.uri)
             .build()
     }
 

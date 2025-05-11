@@ -6,7 +6,7 @@ import android.content.Intent
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.ioffeivan.alarmclock.background.worker.RestoreAlarmClocksWorker
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,8 +19,8 @@ class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         when (intent?.action) {
             Intent.ACTION_BOOT_COMPLETED,
-            Constants.Action.ACTION_QUICKBOOT_POWERON,
-            Constants.Action.ACTION_HTC_QUICKBOOT_POWERON -> {
+            Action.ACTION_QUICKBOOT_POWERON,
+            Action.ACTION_HTC_QUICKBOOT_POWERON -> {
                 workManager.enqueue(
                     OneTimeWorkRequestBuilder<RestoreAlarmClocksWorker>().build()
                 )

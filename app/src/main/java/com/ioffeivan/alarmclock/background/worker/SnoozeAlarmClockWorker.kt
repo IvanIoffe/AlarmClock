@@ -7,7 +7,7 @@ import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.ioffeivan.alarmclock.background.worker.utils.AlarmClockInputDataUtils
 import com.ioffeivan.alarmclock.core.domain.usecase.ScheduleAlarmClockUseCase
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 import com.ioffeivan.alarmclock.core.utils.getNewAlarmClockTime
 import com.ioffeivan.alarmclock.core.utils.showTimeUntilAlarmClockToast
 import com.ioffeivan.alarmclock.create_and_update_alarmclock.domain.usecase.GetAlarmClockByIdUseCase
@@ -34,9 +34,9 @@ class SnoozeAlarmClockWorker @AssistedInject constructor(
             scheduleAlarmClockUseCase(alarmClock.copy(time = newTimeAlarmClock))
 
             val outputData = Data.Builder()
-                .putInt(Constants.AlarmClockKeys.ALARM_CLOCK_HOUR_KEY, newTimeAlarmClock.hour)
-                .putInt(Constants.AlarmClockKeys.ALARM_CLOCK_MINUTE_KEY, newTimeAlarmClock.minute)
-                .putBoolean(Constants.AlarmClockKeys.ALARM_CLOCK_IS_ENABLED_KEY, true)
+                .putInt(AlarmClockKeys.HOUR_KEY, newTimeAlarmClock.hour)
+                .putInt(AlarmClockKeys.MINUTE_KEY, newTimeAlarmClock.minute)
+                .putBoolean(AlarmClockKeys.IS_ENABLED_KEY, true)
                 .build()
 
             showTimeUntilAlarmClockToast(

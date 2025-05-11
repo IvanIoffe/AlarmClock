@@ -24,8 +24,8 @@ fun getAlarmClockActionActivityPendingIntent(
     alarmClockName: String?,
 ): PendingIntent {
     val intent = Intent(context, AlarmClockActionActivity::class.java).apply {
-        putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
-        putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY, alarmClockName)
+        putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
+        putExtra(AlarmClockKeys.NAME_KEY, alarmClockName)
     }
 
     return PendingIntent.getActivity(

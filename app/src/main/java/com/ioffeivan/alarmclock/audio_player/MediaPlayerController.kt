@@ -4,7 +4,6 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.core.net.toUri
-import com.ioffeivan.alarmclock.core.utils.Constants
 import com.ioffeivan.alarmclock.core.utils.defaultSound
 
 class MediaPlayerController(private val context: Context) : PlayerController {

@@ -7,7 +7,7 @@ import com.ioffeivan.alarmclock.audio_player.MediaPlayerController
 import com.ioffeivan.alarmclock.audio_player.PlayerController
 import com.ioffeivan.alarmclock.audio_player.SpotifyPlayerController
 import com.ioffeivan.alarmclock.background.service.notification.AlarmClockNotificationHelper
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 import com.ioffeivan.alarmclock.core.utils.LoadingError
 import com.ioffeivan.alarmclock.core.utils.defaultSound
 import com.ioffeivan.alarmclock.sound_selection.domain.model.SoundType
@@ -45,12 +45,12 @@ class PlayAlarmClockSoundService : Service() {
     private var vibratorController: VibratorController? = null
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        val alarmClockId = intent.getLongExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, -1)
+        val alarmClockId = intent.getLongExtra(AlarmClockKeys.ID_KEY, -1)
         val alarmClockSoundType =
-            intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY) ?: SoundType.SYSTEM.name
-        val alarmClockSoundUri = intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY)
-        val alarmClockIsVibrate = intent.getBooleanExtra(Constants.AlarmClockKeys.ALARM_CLOCK_IS_VIBRATE_KEY, false)
-        val alarmClockName = intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY)
+            intent.getStringExtra(AlarmClockKeys.SOUND_TYPE_KEY) ?: SoundType.SYSTEM.name
+        val alarmClockSoundUri = intent.getStringExtra(AlarmClockKeys.SOUND_URI_KEY)
+        val alarmClockIsVibrate = intent.getBooleanExtra(AlarmClockKeys.IS_VIBRATE_KEY, false)
+        val alarmClockName = intent.getStringExtra(AlarmClockKeys.NAME_KEY)
 
         playSound(alarmClockSoundType, alarmClockSoundUri)
 

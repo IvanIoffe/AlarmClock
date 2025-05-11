@@ -7,7 +7,7 @@ import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.ioffeivan.alarmclock.background.worker.utils.AlarmClockInputDataUtils
 import com.ioffeivan.alarmclock.core.domain.usecase.ScheduleAlarmClockUseCase
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 import com.ioffeivan.alarmclock.create_and_update_alarmclock.domain.usecase.GetAlarmClockByIdUseCase
 import com.ioffeivan.alarmclock.sound_selection.domain.model.SoundType
 import dagger.assisted.Assisted
@@ -47,10 +47,10 @@ class ScheduleAlarmClockWorker @AssistedInject constructor(
             )
 
             val outputData = Data.Builder()
-                .putBoolean(Constants.AlarmClockKeys.ALARM_CLOCK_IS_ENABLED_KEY, true)
-                .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_NAME_KEY, soundName)
-                .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY, soundUri)
-                .putString(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY, soundType)
+                .putBoolean(AlarmClockKeys.IS_ENABLED_KEY, true)
+                .putString(AlarmClockKeys.SOUND_NAME_KEY, soundName)
+                .putString(AlarmClockKeys.SOUND_URI_KEY, soundUri)
+                .putString(AlarmClockKeys.SOUND_TYPE_KEY, soundType)
                 .build()
 
             Result.success(outputData)

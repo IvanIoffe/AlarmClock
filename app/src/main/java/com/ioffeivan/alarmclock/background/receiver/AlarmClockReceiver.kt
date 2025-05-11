@@ -15,7 +15,9 @@ import com.ioffeivan.alarmclock.background.worker.ScheduleAlarmClockWorker
 import com.ioffeivan.alarmclock.background.worker.SnoozeAlarmClockWorker
 import com.ioffeivan.alarmclock.background.worker.UpdateAlarmClockInDatabaseWorker
 import com.ioffeivan.alarmclock.background.worker.utils.WorkRequestTags
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
+import com.ioffeivan.alarmclock.core.utils.SpotifyKeys
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,17 +29,14 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
         val alarmClockId =
-            intent?.getLongExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, -1) ?: return
+            intent?.getLongExtra(AlarmClockKeys.ID_KEY, -1) ?: return
 
         when (intent.action) {
-            Constants.Action.ACTION_START_OR_CANCEL_ALARM_CLOCK -> {
-                val alarmClockSoundType =
-                    intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY)
-                val alarmClockSoundUri =
-                    intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY)
-                val alarmClockIsVibrate =
-                    intent.getBooleanExtra(Constants.AlarmClockKeys.ALARM_CLOCK_IS_VIBRATE_KEY, false)
-                val alarmClockName = intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY)
+            Action.ACTION_START_OR_CANCEL_ALARM_CLOCK -> {
+                val alarmClockSoundType = intent.getStringExtra(AlarmClockKeys.SOUND_TYPE_KEY)
+                val alarmClockSoundUri = intent.getStringExtra(AlarmClockKeys.SOUND_URI_KEY)
+                val alarmClockIsVibrate = intent.getBooleanExtra(AlarmClockKeys.IS_VIBRATE_KEY, false)
+                val alarmClockName = intent.getStringExtra(AlarmClockKeys.NAME_KEY)
 
                 stopPlayAlarmClockSoundService(context)
                 sendBroadcastForFinishActivity(context)
@@ -53,7 +52,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
                 workManager.cancelAllWorkByTag(WorkRequestTags.GET_NEW_RELEASE_SPOTIFY_ARTIST_REQUEST_TAG)
             }
 
-            Constants.Action.ACTION_SNOOZE_ALARM_CLOCK -> {
+            Action.ACTION_SNOOZE_ALARM_CLOCK -> {
                 workManager
                     .beginWith(snoozeAlarmClockRequest(alarmClockId))
                     .then(updateAlarmClockRequest(alarmClockId))
@@ -63,14 +62,14 @@ class AlarmClockReceiver : BroadcastReceiver() {
                 sendBroadcastForFinishActivity(context)
             }
 
-            Constants.Action.ACTION_STOP_ALARM_CLOCK -> {
+            Action.ACTION_STOP_ALARM_CLOCK -> {
                 stopPlayAlarmClockSoundService(context)
                 sendBroadcastForFinishActivity(context)
             }
 
-            Constants.Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST -> {
+            Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST -> {
                 val spotifyArtistId =
-                    intent.getStringExtra(Constants.AlarmClockKeys.SPOTIFY_ARTIST_ID_KEY) ?: return
+                    intent.getStringExtra(SpotifyKeys.SPOTIFY_ARTIST_ID_KEY) ?: return
 
                 workManager
                     .beginWith(getNewReleaseSpotifyArtistRequest(spotifyArtistId))
@@ -86,7 +85,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
     }
 
     private fun sendBroadcastForFinishActivity(context: Context) {
-        context.sendBroadcast(Intent(Constants.Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY))
+        context.sendBroadcast(Intent(Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY))
     }
 
     private fun startForegroundService(
@@ -99,11 +98,11 @@ class AlarmClockReceiver : BroadcastReceiver() {
     ) {
         val playAlarmClockSoundServiceIntent =
             Intent(context, PlayAlarmClockSoundService::class.java).apply {
-                putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
-                putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_TYPE_KEY, alarmClockSoundType)
-                putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_SOUND_URI_KEY, alarmClockSoundUri)
-                putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_IS_VIBRATE_KEY, alarmClockIsVibrate)
-                putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY, alarmClockName)
+                putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
+                putExtra(AlarmClockKeys.SOUND_TYPE_KEY, alarmClockSoundType)
+                putExtra(AlarmClockKeys.SOUND_URI_KEY, alarmClockSoundUri)
+                putExtra(AlarmClockKeys.IS_VIBRATE_KEY, alarmClockIsVibrate)
+                putExtra(AlarmClockKeys.NAME_KEY, alarmClockName)
             }
 
         context.startForegroundService(playAlarmClockSoundServiceIntent)
@@ -111,7 +110,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
     private fun updateAlarmClockRequest(alarmClockId: Long): OneTimeWorkRequest {
         val inputData = Data.Builder()
-            .putLong(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
+            .putLong(AlarmClockKeys.ID_KEY, alarmClockId)
             .build()
 
         return OneTimeWorkRequestBuilder<UpdateAlarmClockInDatabaseWorker>()
@@ -121,7 +120,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
     private fun scheduleAlarmClockRequest(alarmClockId: Long): OneTimeWorkRequest {
         val inputData = Data.Builder()
-            .putLong(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
+            .putLong(AlarmClockKeys.ID_KEY, alarmClockId)
             .build()
 
         return OneTimeWorkRequestBuilder<ScheduleAlarmClockWorker>()
@@ -131,7 +130,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
     private fun snoozeAlarmClockRequest(alarmClockId: Long): OneTimeWorkRequest {
         val inputData = Data.Builder()
-            .putLong(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
+            .putLong(AlarmClockKeys.ID_KEY, alarmClockId)
             .build()
 
         return OneTimeWorkRequestBuilder<SnoozeAlarmClockWorker>()
@@ -141,7 +140,7 @@ class AlarmClockReceiver : BroadcastReceiver() {
 
     private fun getNewReleaseSpotifyArtistRequest(spotifyArtistId: String): OneTimeWorkRequest {
         val inputData = Data.Builder()
-            .putString(Constants.AlarmClockKeys.SPOTIFY_ARTIST_ID_KEY, spotifyArtistId)
+            .putString(SpotifyKeys.SPOTIFY_ARTIST_ID_KEY, spotifyArtistId)
             .build()
 
         val constraints = Constraints.Builder()

@@ -6,7 +6,8 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.ioffeivan.alarmclock.R
 import com.ioffeivan.alarmclock.background.receiver.AlarmClockReceiver
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 
 class AlarmClockNotificationActionHelper(
     private val context: Context,
@@ -15,8 +16,8 @@ class AlarmClockNotificationActionHelper(
         alarmClockId: Long,
     ): NotificationCompat.Action {
         val intent = Intent(context, AlarmClockReceiver::class.java).apply {
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
-            action = Constants.Action.ACTION_SNOOZE_ALARM_CLOCK
+            putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
+            action = Action.ACTION_SNOOZE_ALARM_CLOCK
         }
 
         val pendingIntent = PendingIntent.getBroadcast(
@@ -37,8 +38,8 @@ class AlarmClockNotificationActionHelper(
         alarmClockId: Long,
     ): NotificationCompat.Action {
         val intent = Intent(context, AlarmClockReceiver::class.java).apply {
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
-            action = Constants.Action.ACTION_STOP_ALARM_CLOCK
+            putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
+            action = Action.ACTION_STOP_ALARM_CLOCK
         }
 
         val pendingIntent = PendingIntent.getBroadcast(

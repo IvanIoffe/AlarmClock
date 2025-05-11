@@ -36,7 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ioffeivan.alarmclock.R
 import com.ioffeivan.alarmclock.background.receiver.AlarmClockReceiver
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
 import com.ioffeivan.alarmclock.core.utils.TimeHelper
 import com.ioffeivan.alarmclock.ui.theme.AlarmClockTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,8 +52,8 @@ class AlarmClockActionActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val alarmClockId = intent.getLongExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, -1)
-        val alarmClockName = intent.getStringExtra(Constants.AlarmClockKeys.ALARM_CLOCK_NAME_KEY)
+        val alarmClockId = intent.getLongExtra(AlarmClockKeys.ID_KEY, -1)
+        val alarmClockName = intent.getStringExtra(AlarmClockKeys.NAME_KEY)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -75,16 +76,16 @@ class AlarmClockActionActivity : ComponentActivity() {
                         onSnooze = {
                             sendBroadcast(
                                 Intent(this, AlarmClockReceiver::class.java).apply {
-                                    action = Constants.Action.ACTION_SNOOZE_ALARM_CLOCK
-                                    putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
+                                    action = Action.ACTION_SNOOZE_ALARM_CLOCK
+                                    putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
                                 }
                             )
                         },
                         onStop = {
                             sendBroadcast(
                                 Intent(this, AlarmClockReceiver::class.java).apply {
-                                    action = Constants.Action.ACTION_STOP_ALARM_CLOCK
-                                    putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClockId)
+                                    action = Action.ACTION_STOP_ALARM_CLOCK
+                                    putExtra(AlarmClockKeys.ID_KEY, alarmClockId)
                                 }
                             )
                         },
@@ -100,7 +101,7 @@ class AlarmClockActionActivity : ComponentActivity() {
 
         finishActivityReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent?.action == Constants.Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY) {
+                if (intent?.action == Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY) {
                     finish()
                 }
             }
@@ -108,7 +109,7 @@ class AlarmClockActionActivity : ComponentActivity() {
 
         registerReceiver(
             finishActivityReceiver,
-            IntentFilter(Constants.Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY),
+            IntentFilter(Action.ACTION_FINISH_ALARM_CLOCK_ACTIVITY),
             RECEIVER_NOT_EXPORTED
         )
     }

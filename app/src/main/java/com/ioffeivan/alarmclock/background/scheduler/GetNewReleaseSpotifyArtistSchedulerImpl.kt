@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import com.ioffeivan.alarmclock.background.receiver.AlarmClockReceiver
 import com.ioffeivan.alarmclock.core.domain.model.AlarmClock
-import com.ioffeivan.alarmclock.core.utils.Constants
+import com.ioffeivan.alarmclock.core.utils.Action
+import com.ioffeivan.alarmclock.core.utils.AlarmClockKeys
+import com.ioffeivan.alarmclock.core.utils.SpotifyKeys
 import com.ioffeivan.alarmclock.core.utils.getAlarmClockPendingIntent
 import com.ioffeivan.alarmclock.core.utils.getTimeMillisUntilAlarmClock
 import javax.inject.Inject
@@ -45,15 +47,15 @@ class GetNewReleaseSpotifyArtistSchedulerImpl @Inject constructor(
         val spotifyArtistId = alarmClock.sound.uri?.split(":")?.last()
 
         return Intent(context, AlarmClockReceiver::class.java).apply {
-            action = Constants.Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST
-            putExtra(Constants.AlarmClockKeys.ALARM_CLOCK_ID_KEY, alarmClock.id)
-            putExtra(Constants.AlarmClockKeys.SPOTIFY_ARTIST_ID_KEY, spotifyArtistId)
+            action = Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST
+            putExtra(AlarmClockKeys.ID_KEY, alarmClock.id)
+            putExtra(SpotifyKeys.SPOTIFY_ARTIST_ID_KEY, spotifyArtistId)
         }
     }
 
     private fun createCancelIntent(): Intent {
         return Intent(context, AlarmClockReceiver::class.java).apply {
-            action = Constants.Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST
+            action = Action.ACTION_GET_NEW_RELEASE_SPOTIFY_ARTIST
         }
     }
 }
