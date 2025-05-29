@@ -45,6 +45,11 @@ splashScreen = "1.0.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+truth = "1.4.4"
+mockk = "1.14.2"
+turbine = "1.2.0"
+hiltAndroidTesting = "2.55"
+kotlinxCoroutinesTest = "1.10.2"
 
 # Plugins
 agp = "8.9.2"
@@ -108,6 +113,12 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltAndroidTesting" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

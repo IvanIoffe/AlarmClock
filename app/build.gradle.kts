@@ -24,7 +24,7 @@ android {
         buildConfigField("String", "SPOTIFY_CLIENT_SECRET", "\"$clientSecret\"")
         buildConfigField("String", "SPOTIFY_REDIRECT_URI", "\"$redirectUri\"")
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ioffeivan.alarmclock.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -52,10 +52,6 @@ android {
     buildFeatures {
         buildConfig = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
     }
 
     packaging {
@@ -122,11 +118,20 @@ dependencies {
 
     // Test
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.hilt.android.testing)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    kspAndroidTest(libs.hilt.android.compiler)
 }
